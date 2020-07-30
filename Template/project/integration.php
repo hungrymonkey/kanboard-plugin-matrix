@@ -10,6 +10,10 @@
     <?= $this->form->checkbox('matrix_send_notices', t('Send messages as notices'), 1, !isset($values['matrix_send_notices']) || $values['matrix_send_notices'] == 1) ?>
     <p class="form-help"><?= t('If switched off, updates will be posted as regular messages') ?></p>
 
+    <?= $this->form->hidden('matrix_enable_url_previews', array('matrix_enable_url_previews' => 0)) ?>
+    <?= $this->form->checkbox('matrix_enable_url_previews', t('Enable URL preview in messages'), 1, !isset($values['matrix_enable_url_previews']) || $values['matrix_enable_url_previews'] == 1) ?>
+    <p class="form-help"><a href="https://github.com/matrix-org/matrix-doc/pull/2376" target="_blank"><?= t('For more information, See MSC2376') ?></a></p>
+
     <p class="form-help"><a href="https://kanboard.net/plugin/matrix" target="_blank"><?= t('Help on Matrix integration') ?></a></p>
 
     <div class="form-actions">

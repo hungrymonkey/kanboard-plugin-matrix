@@ -64,6 +64,11 @@ class Matrix extends Base implements NotificationInterface
             $use_colours = true;
         }
 
+        $enable_url_preview = $this->projectMetadataModel->get($project['id'], 'matrix_enable_url_previews');
+        if (!isset($enable_url_preview)) {
+            $enable_url_preview = true;
+        }
+
         if ($this->userSession->isLogged()) {
             $author = $this->helper->user->getFullname();
             $title = $this->notificationModel->getTitleWithAuthor($author, $event_name, $event_data);
@@ -78,7 +83,9 @@ class Matrix extends Base implements NotificationInterface
         if ($this->configModel->get('application_url') !== '') {
             $url = $this->helper->url->to('TaskViewController', 'show', array('task_id' => $event_data['task']['id'], 'project_id' => $project['id']), '', true);
             $message .= $use_colours ? '<font color="teal">' : '';
+            $message .= $use_enable_url_preview ? '<a data-mx-nopreview>' : '';
             $message .= htmlspecialchars($url);
+            $message .= $use_enable_url_preview ? '</a>' : '';
             $message .= $use_colours ? '</font>' : '';
         }
 
