@@ -12,9 +12,15 @@
 
     <?= $this->form->hidden('matrix_embed_comments', array('matrix_embed_comments' => 0)) ?>
     <?= $this->form->checkbox('matrix_embed_comments', t('Embed comments into messages'), 1, !isset($values['matrix_embed_comments']) || $values['matrix_embed_comments'] == 1) ?>
-    <p class="form-help"><?= t('If switched on, notifications will embed ') ?>
+    <p class="form-help"><?= t('If switched on, notifications will embed comments') ?>
     <a href="https://docs.kanboard.org/en/latest/developer_guide/webhooks.html?highlight=event_data#examples-of-event-payloads" target="_blank">
     <?= t('comment.create and comment.update events') ?></a></p>
+
+    <?= $this->form->hidden('matrix_embed_description', array('matrix_embed_description' => 0)) ?>
+    <?= $this->form->checkbox('matrix_embed_description', t('Embed task description into messages'), 1, !isset($values['matrix_embed_description']) || $values['matrix_embed_description'] == 1) ?>
+    <p class="form-help"><?= t('If switched on, notifications will embed task description') ?>
+    <a href="https://docs.kanboard.org/en/latest/developer_guide/webhooks.html?highlight=event_data#examples-of-event-payloads" target="_blank">
+    <?= t('task.create and task.update events') ?></a></p>
 
     <p class="form-help"><a href="https://kanboard.net/plugin/matrix" target="_blank"><?= t('Help on Matrix integration') ?></a></p>
 
