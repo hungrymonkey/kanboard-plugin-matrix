@@ -81,7 +81,7 @@ class Matrix extends Base implements NotificationInterface
             $message .= htmlspecialchars($url);
             $message .= $use_colours ? '</font>' : '';
         }
-        $message .= $this-> handleEvent($project, $event_name, $event_data);
+        $message .= $this->handleEvent($project, $event_name, $event_data);
 
         return $message;
     }
@@ -104,14 +104,14 @@ class Matrix extends Base implements NotificationInterface
                 if (!isset($use_embed_comment)) {
                     $use_embed_comment = true;
                 }
-                return $use_embed_comment ? handleComment($event_data) : '';
+                return $use_embed_comment ? $this->handleComment($event_data) : '';
             case "task.create":
             case "task.update";
                 $use_embed_description = $this->projectMetadataModel->get($project['id'], 'matrix_embed_description');
                 if (!isset($use_embed_description)) {
                     $use_embed_description = true;
                 }
-                return $use_embed_description ? handleDescription($event_data) : '';
+                return $use_embed_description ? $this->handleDescription($event_data) : '';
             default:
                 return '';
         }
